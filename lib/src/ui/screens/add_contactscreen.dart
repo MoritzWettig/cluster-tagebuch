@@ -207,12 +207,13 @@ class _AddContactScreenState extends State<AddContactScreen> {
           }
         },
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               Icons.contacts,
               color: Colors.white,
             ),
+            SizedBox(width:20),
             Text(
               'Aus Adressbuch importieren',
               style: TextStyle(color: Colors.white),
