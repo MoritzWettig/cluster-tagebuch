@@ -1,4 +1,4 @@
-package com.example.cluster_tagebuch
+package com.moritzwettig.cluster_tagebuch
 
 import io.flutter.embedding.android.FlutterActivity
 
