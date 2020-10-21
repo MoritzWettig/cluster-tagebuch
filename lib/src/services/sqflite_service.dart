@@ -1,19 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:path/path.dart';
-import 'package:sqflite_sqlcipher/sqflite.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../datamodels/cluster_model.dart';
 import '../datamodels/contact_model.dart';
 import '../datamodels/clusterhistory_model.dart';
-import 'generate_key.dart';
 
 class ClusterHistoryDB {
   static final ClusterHistoryDB _instance = ClusterHistoryDB._();
   static Database _database;
-  final storage = new FlutterSecureStorage();
 
   ClusterHistoryDB._();
 
@@ -29,31 +26,10 @@ class ClusterHistoryDB {
     return _database;
   }
 
-  getKey() async {
-    // Holt den Schlüssel für die Datenbank aus dem Secure-Storage. Wenn keiner vorhanden ist, kommt ein null als return-Wert.
-    String keyfromsecurestorage = await storage.read(key: 'clusterdbkey');
-
-    // Überprüft, ob bereits ein Schlüssel vorhanden ist.
-    if (keyfromsecurestorage == null) {
-      //Wenn kein Schlüssel vorhanden ist, da die Variable gleich null ist, dann erstelle einen und speicher diesen im Secure-Storage
-      String key = await GenerateRandomString().generate(256);
-      await storage.write(key: 'clusterdbkey', value: key);
-      String keyfromsecurestorage = await storage.read(key: 'clusterdbkey');
-      // Function gibt den neuerstellten Schlüssel zurück
-      return keyfromsecurestorage;
-    } else {
-      // Wenn die Variable nicht gleich null ist, gibt die Function den bereits vorhanden Schlüssel zurück
-      return keyfromsecurestorage;
-    }
-  }
-
   Future<Database> init() async {
-    // Erstellt die Datenbank, wenn diese nicht vorhanden ist und verwendet den Schlüssel aus der Function getKey()
     Directory directory = await getApplicationDocumentsDirectory();
     String pathtoDB = join(directory.path, 'ct.db');
-    String key = await getKey();
-    var database = openDatabase(pathtoDB,
-        password: key, version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
+    var database = openDatabase(pathtoDB, version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
     return database;
   }
 
