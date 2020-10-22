@@ -106,7 +106,7 @@ class _DeleteScreenState extends State<DeleteScreen> {
                       Text(
                         'Lösche Kontakte die älter sind als',
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Slider(
                         value: _currentSliderContactValue,

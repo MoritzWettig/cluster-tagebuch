@@ -87,7 +87,7 @@ class _QRScreenState extends State<QRScreen> {
         padding: EdgeInsets.only(left: 20, top: 20, right: 20),
         version: QrVersions.auto,
         foregroundColor: Theme.of(context).colorScheme.qrcodeforeground,
-        size: 360.0,
+        size: 350.0,
       ),
     );
   }
@@ -178,7 +178,7 @@ class _QRScreenState extends State<QRScreen> {
               ),
               Container(
                 margin:
-                    EdgeInsets.only(top: 30, right: 100, left: 100, bottom: 20),
+                    EdgeInsets.only(top: 30, right: 50, left: 50, bottom: 20),
                 color: Colors.teal,
                 child: FlatButton(
                     onPressed: () async {

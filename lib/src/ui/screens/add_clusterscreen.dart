@@ -147,7 +147,7 @@ class _AddClusterScreenState extends State<AddClusterScreen> {
               ),
               Container(
                 margin:
-                    EdgeInsets.only(top: 10, right: 100, left: 100, bottom: 20),
+                    EdgeInsets.only(top: 10, right: 50, left: 50, bottom: 20),
                 color: Colors.teal,
                 child: FlatButton(
                   onPressed: () async {
@@ -316,7 +316,7 @@ class _AddClusterScreenState extends State<AddClusterScreen> {
                 children: [
                   Container(
                     margin: EdgeInsets.only(
-                        top: 20, right: 100, left: 100, bottom: 20),
+                        top: 20, right: 50, left: 50, bottom: 20),
                     color: Colors.teal,
                     child: FlatButton(
                       onPressed: () {

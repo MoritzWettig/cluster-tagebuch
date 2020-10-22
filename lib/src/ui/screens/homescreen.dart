@@ -120,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => _scaffoldKey.currentState.openEndDrawer()),
         ),
         elevation: 12,
-        title: Text('Cluster-Tagebuch'),
+        title: Text('Cluster Tagebuch', maxLines: 2),
         centerTitle: true,
         actions: [
           IconButton(
@@ -222,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Text(
               'Keine Cluster vorhanden',
               style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 25,
                   fontStyle: FontStyle.italic,
                   color: Colors.grey.withOpacity(1)),
             ),
@@ -333,11 +333,12 @@ class _HomeScreenState extends State<HomeScreen> {
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               'Keine Kontakte vorhanden',
               style: TextStyle(
-                  fontSize: 30,
+                  fontSize: 25,
                   fontStyle: FontStyle.italic,
                   color: Colors.grey.withOpacity(1)),
             ),

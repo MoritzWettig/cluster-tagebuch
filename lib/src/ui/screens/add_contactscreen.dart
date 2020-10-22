@@ -154,7 +154,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
               ),
               Container(
                 margin:
-                    EdgeInsets.only(top: 30, right: 100, left: 100, bottom: 20),
+                    EdgeInsets.only(top: 30, right: 50, left: 50, bottom: 20),
                 color: Colors.teal,
                 child: FlatButton(
                     onPressed: () async {
@@ -192,9 +192,11 @@ class _AddContactScreenState extends State<AddContactScreen> {
                           Icons.save,
                           color: Colors.white,
                         ),
-                        Text(
-                          'Speichern',
-                          style: TextStyle(color: Colors.white),
+                        Flexible(
+                                                  child: Text(
+                            'Speichern',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         )
                       ],
                     )),
@@ -233,9 +235,11 @@ class _AddContactScreenState extends State<AddContactScreen> {
               color: Colors.white,
             ),
             SizedBox(width: 20),
-            Text(
-              'Aus Adressbuch importieren',
-              style: TextStyle(color: Colors.white),
+            Flexible(
+                          child: Text(
+                'Aus Adressbuch importieren',
+                style: TextStyle(color: Colors.white),
+              ),
             )
           ],
         ),
