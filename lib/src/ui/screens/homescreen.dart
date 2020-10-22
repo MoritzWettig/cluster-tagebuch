@@ -791,6 +791,9 @@ class _HomeScreenState extends State<HomeScreen> {
     if (result != null) {
       setupContactsList();
       setupClusterList();
+    } else {
+      setupContactsList();
+      setupClusterList();
     }
   }
 
