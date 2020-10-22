@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:search_page/search_page.dart';
 
+import 'add_contactscreen.dart';
 import '../../datamodels/cluster_model.dart';
 import '../../datamodels/clusterhistory_model.dart';
 import '../../datamodels/contact_model.dart';
@@ -311,102 +312,146 @@ class _AddClusterScreenState extends State<AddClusterScreen> {
                 user.vorname,
                 user.nachname,
               ],
-              suggestion: ListView.builder(
-                  primary: false,
-                  shrinkWrap: true,
-                  itemCount: _allcontacts.length,
-                  itemBuilder: (context, index) {
-                    Contacts contact = _allcontacts[index];
-                    return Card(
-                      elevation: 5,
-                      margin: EdgeInsets.only(left: 15, right: 15, top: 20),
-                      child: ListTile(
-                        onTap: () async {
-                          bool result = await db.addClusterHistory(
-                            ClusterHistory(
-                                clusterID: clusterid, contactID: contact.id),
-                          );
-                          if (result) {
-                            Navigator.pop(context);
-                            _setupContactsList();
-                          } else {
-                            Scaffold.of(context).showSnackBar(
-                              SnackBar(
-                                backgroundColor: Colors.teal,
-                                content: Text('Verknüpfung existiert bereits',
-                                    style: TextStyle(color: Colors.white)),
-                                duration: Duration(seconds: 1),
-                              ),
-                            );
-                          }
-                        },
-                        onLongPress: () async {
-                          bool result = await db.addClusterHistory(
-                            ClusterHistory(
-                                clusterID: clusterid, contactID: contact.id),
-                          );
-                          if (result) {
-                            Scaffold.of(context).showSnackBar(
-                              SnackBar(
-                                backgroundColor: Colors.teal,
-                                content: Text('Verknüpfung wurde erstellt',
-                                    style: TextStyle(color: Colors.white)),
-                                duration: Duration(seconds: 1),
-                              ),
-                            );
-                            _setupContactsList();
-                          } else {
-                            Scaffold.of(context).showSnackBar(
-                              SnackBar(
-                                backgroundColor: Colors.teal,
-                                content: Text('Verknüpfung existiert bereits',
-                                    style: TextStyle(color: Colors.white)),
-                                duration: Duration(seconds: 1),
-                              ),
-                            );
-                          }
-                        },
-                        contentPadding: EdgeInsets.only(left: 10, right: 10),
-                        leading: Container(
-                          child: CircleAvatar(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Theme.of(context)
-                                .colorScheme
-                                .circleAvatarBackgroundColor,
-                            child: Text(contact.nachname[0].toUpperCase() +
-                                contact.vorname[0].toUpperCase()),
+              suggestion: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                        top: 20, right: 100, left: 100, bottom: 20),
+                    color: Colors.teal,
+                    child: FlatButton(
+                      onPressed: () {
+                        _navigateToAddContactScreen(context, clusterid);
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.person_add,
+                            color: Colors.white,
                           ),
-                        ),
-                        title: Row(
-                          children: [
-                            Icon(Icons.person_pin),
-                            SizedBox(width: 10),
-                            Flexible(
-                                child: Text(
-                                    contact.nachname + ', ' + contact.vorname)),
-                          ],
-                        ),
-                        subtitle: Row(
-                          children: [
-                            Icon(Icons.home),
-                            SizedBox(width: 10),
-                            Flexible(
-                              child: (contact.ort.isNotEmpty &&
-                                      contact.strasse.isNotEmpty)
-                                  ? Text(contact.ort + ', ' + contact.strasse)
-                                  : (contact.ort.isNotEmpty &&
-                                          contact.strasse.isEmpty)
-                                      ? Text(contact.ort)
-                                      : (contact.ort.isEmpty &&
-                                              contact.strasse.isNotEmpty)
-                                          ? Text(contact.strasse)
-                                          : Text('Keine Angaben'),
-                            ),
-                          ],
-                        ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Neuen Kontakt',
+                            style: TextStyle(color: Colors.white),
+                          )
+                        ],
                       ),
-                    );
-                  }),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                        primary: false,
+                        shrinkWrap: true,
+                        itemCount: _allcontacts.length,
+                        itemBuilder: (context, index) {
+                          Contacts contact = _allcontacts[index];
+                          return Card(
+                            elevation: 5,
+                            margin:
+                                EdgeInsets.only(left: 15, right: 15, top: 20),
+                            child: ListTile(
+                              onTap: () async {
+                                bool result = await db.addClusterHistory(
+                                  ClusterHistory(
+                                      clusterID: clusterid,
+                                      contactID: contact.id),
+                                );
+                                if (result) {
+                                  Navigator.pop(context);
+                                  _setupContactsList();
+                                } else {
+                                  Scaffold.of(context).showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.teal,
+                                      content: Text(
+                                          'Verknüpfung existiert bereits',
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                      duration: Duration(seconds: 1),
+                                    ),
+                                  );
+                                }
+                              },
+                              onLongPress: () async {
+                                bool result = await db.addClusterHistory(
+                                  ClusterHistory(
+                                      clusterID: clusterid,
+                                      contactID: contact.id),
+                                );
+                                if (result) {
+                                  Scaffold.of(context).showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.teal,
+                                      content: Text(
+                                          'Verknüpfung wurde erstellt',
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                      duration: Duration(seconds: 1),
+                                    ),
+                                  );
+                                  _setupContactsList();
+                                } else {
+                                  Scaffold.of(context).showSnackBar(
+                                    SnackBar(
+                                      backgroundColor: Colors.teal,
+                                      content: Text(
+                                          'Verknüpfung existiert bereits',
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                      duration: Duration(seconds: 1),
+                                    ),
+                                  );
+                                }
+                              },
+                              contentPadding:
+                                  EdgeInsets.only(left: 10, right: 10),
+                              leading: Container(
+                                child: CircleAvatar(
+                                  foregroundColor: Colors.white,
+                                  backgroundColor: Theme.of(context)
+                                      .colorScheme
+                                      .circleAvatarBackgroundColor,
+                                  child: Text(
+                                      contact.nachname[0].toUpperCase() +
+                                          contact.vorname[0].toUpperCase()),
+                                ),
+                              ),
+                              title: Row(
+                                children: [
+                                  Icon(Icons.person_pin),
+                                  SizedBox(width: 10),
+                                  Flexible(
+                                      child: Text(contact.nachname +
+                                          ', ' +
+                                          contact.vorname)),
+                                ],
+                              ),
+                              subtitle: Row(
+                                children: [
+                                  Icon(Icons.home),
+                                  SizedBox(width: 10),
+                                  Flexible(
+                                    child: (contact.ort.isNotEmpty &&
+                                            contact.strasse.isNotEmpty)
+                                        ? Text(contact.ort +
+                                            ', ' +
+                                            contact.strasse)
+                                        : (contact.ort.isNotEmpty &&
+                                                contact.strasse.isEmpty)
+                                            ? Text(contact.ort)
+                                            : (contact.ort.isEmpty &&
+                                                    contact.strasse.isNotEmpty)
+                                                ? Text(contact.strasse)
+                                                : Text('Keine Angaben'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                  ),
+                ],
+              ),
               builder: (contact) => Builder(
                 builder: (context) => Card(
                   elevation: 5,
@@ -600,6 +645,18 @@ class _AddClusterScreenState extends State<AddClusterScreen> {
       ),
       controller: controller,
     );
+  }
+
+  _navigateToAddContactScreen(BuildContext context, int clusterID) async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => AddContactScreen(clusterID: clusterID)),
+    );
+    if (result != null) {
+      _setupContactsList();
+      Navigator.pop(context);
+    }
   }
 
   void _setupContactsList() async {

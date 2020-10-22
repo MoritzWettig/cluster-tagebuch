@@ -2,12 +2,15 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../datamodels/clusterhistory_model.dart';
 import '../../datamodels/contact_model.dart';
 import '../../services/sqflite_service.dart';
 
 class AddContactScreen extends StatefulWidget {
+  final int clusterID;
   @override
   _AddContactScreenState createState() => _AddContactScreenState();
+  AddContactScreen({this.clusterID});
 }
 
 class _AddContactScreenState extends State<AddContactScreen> {
@@ -53,8 +56,10 @@ class _AddContactScreenState extends State<AddContactScreen> {
           ),
           title: Text('Kontakt hinzufügen'),
         ),
-        body: Column(
-          children: [contactInputField(context), customImportContactButton()],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [contactInputField(context), customImportContactButton()],
+          ),
         ),
       ),
     );
@@ -155,14 +160,28 @@ class _AddContactScreenState extends State<AddContactScreen> {
                     onPressed: () async {
                       FocusScope.of(context).unfocus();
                       if (_formKey.currentState.validate()) {
-                        await db.addcontact(Contacts(
-                            vorname: vornameController.text,
-                            nachname: nachnameController.text,
-                            strasse: strasseController.text,
-                            ort: ortController.text,
-                            plz: plzController.text,
-                            telefonnummer: telefonnummerController.text,
-                            adddatum: DateTime.now().millisecondsSinceEpoch));
+                        if (widget.clusterID != null) {
+                          int _contactID = await db.addcontact(Contacts(
+                              vorname: vornameController.text,
+                              nachname: nachnameController.text,
+                              strasse: strasseController.text,
+                              ort: ortController.text,
+                              plz: plzController.text,
+                              telefonnummer: telefonnummerController.text,
+                              adddatum: DateTime.now().millisecondsSinceEpoch));
+                          await db.addClusterHistory(ClusterHistory(
+                              clusterID: widget.clusterID,
+                              contactID: _contactID));
+                        } else {
+                          await db.addcontact(Contacts(
+                              vorname: vornameController.text,
+                              nachname: nachnameController.text,
+                              strasse: strasseController.text,
+                              ort: ortController.text,
+                              plz: plzController.text,
+                              telefonnummer: telefonnummerController.text,
+                              adddatum: DateTime.now().millisecondsSinceEpoch));
+                        }
                         Navigator.pop(context, true);
                       }
                     },
@@ -213,7 +232,7 @@ class _AddContactScreenState extends State<AddContactScreen> {
               Icons.contacts,
               color: Colors.white,
             ),
-            SizedBox(width:20),
+            SizedBox(width: 20),
             Text(
               'Aus Adressbuch importieren',
               style: TextStyle(color: Colors.white),
