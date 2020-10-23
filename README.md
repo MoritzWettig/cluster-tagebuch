@@ -1,4 +1,5 @@
 # Cluster Tagebuch
+<img src="/assets/icon/Cluster_Tagebuch_Icon.png" width="150" height="150"/>
 
 ## Bald Verfügbar
 Dokumentiere deine Cluster mit der Cluster-Tagebuch App für Android und IOS, geschrieben in Dart und Flutter SDK.
