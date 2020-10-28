@@ -44,7 +44,7 @@ class PDFReportScreen extends StatelessWidget {
               onPressed: () async {
                 var _pdf = await pdf;
                 String docname =
-                    'Cluster-Tagebuch-Report_' + df.format(DateTime.now());
+                    'Cluster-Tagebuch-Report_' + df.format(DateTime.now()) + '.pdf';
                 await Printing.sharePdf(bytes: _pdf, filename: docname);
               },
             ),
