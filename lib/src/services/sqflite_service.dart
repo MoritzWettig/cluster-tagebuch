@@ -29,7 +29,8 @@ class ClusterHistoryDB {
   Future<Database> init() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String pathtoDB = join(directory.path, 'ct.db');
-    var database = openDatabase(pathtoDB, version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
+    var database = openDatabase(pathtoDB,
+        version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
     return database;
   }
 
@@ -129,7 +130,6 @@ class ClusterHistoryDB {
 
     return null;
   }
-
 
   // Diese Function überprüft, ob ein Kontaktinformationen, die eingescannt wurde, schon vorhanden sind.
   // Wenn die Kontaktdaten vorhanden sind, wird die contactID zurückgegeben
@@ -260,6 +260,29 @@ class ClusterHistoryDB {
     }
     return [];
   }
+
+  // Holt alle Konakte die einem Cluster zugeordnet sind, welches in den letzten x (Default 14) Tage stattgefunden hat
+  Future<List<Contacts>> getAllContacts14DaysReport(int days) async {
+    var client = await db;
+    var result = await client.rawQuery(
+      'SELECT DISTINCT Contacts.* FROM Contacts INNER JOIN clusterhistory ON Contacts.id = clusterhistory.contactID INNER JOIN clusters ON clusterhistory.clusterID = clusters.id  WHERE clusters.datum >= ? ORDER BY Contacts.nachname',
+      [DateTime.now().add(Duration(days: -days)).millisecondsSinceEpoch],
+    );
+    if (result.isNotEmpty) {
+      var contacts =
+          result.map((contactMap) => Contacts.mapfromdb(contactMap)).toList();
+      return contacts;
+    }
+    return [];
+  }
+
+  // Holt die Anzahl der Cluster, welche in den letzten X (Default 14) Tagen stattgefunden haben
+  Future<int> getClustersCount14Days(int days) async {
+    var client = await db;
+    var result = await client.query('clusters', where: 'datum >= ?', whereArgs: [DateTime.now().add(Duration(days: -days)).millisecondsSinceEpoch]);
+    return result.length;
+  }
+
 
   // Speichert die Verknüpfung von Cluster und Kontaktinformationen in einer Junction Table
   Future<bool> addClusterHistory(ClusterHistory clusterHistory) async {

@@ -122,6 +122,15 @@ class AboutAppScreen extends StatelessWidget {
                   ),
                   Text(
                       'Die App "Cluster Tagebuch" bietet dem Nutzer die Möglichkeit einen QR-Code lokal zu generieren, welcher die von ihm eingegebenen personenbezogen Daten repräsentiert. Die Weitergabe der personenbezogenen Daten in Form des QR-Codes liegt einzig und allein in der Verantwortung des Nutzers. Der Entwickler tritt hierbei von jeglicher Verantwortung bei der Weitergabe der personenbezogenen Daten über den QR-Code zurück. Der Nutzer selbst entscheidet, wer seine personenbezogenen Daten einscannen darf. Bei der Erstellung des QR-Codes werden die Nutzerkontaktdaten in Base64 kodiert. Die Kodierung mit Base64 stellt keine Verschlüsselung dar. Wenn nun eine andere Partei den QR-Code mit der App „Cluster Tagebuch“ einscannt, werden die Kontaktdaten dekodiert und in der lokalen Datenbank auf dem Smartphone der anderen Partei gespeichert.'),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15, top: 30),
+                    child: Text(
+                      'PDF-Report Export',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  Text(
+                      'Die App „Cluster Tagebuch“ bietet den Nutzern die Möglichkeit einen PDF-Report zu erstellen, der die Kontakte der letzten X Tage (maximal 14 Tage) auflistet. Dieser PDF-Report enthält personenbezogene Daten und soll den Gesundheitsbehörden bei der Kontaktnachverfolgung helfen. Diesen PDF-Report sollte der Nutzer nur nach Aufforderung durch die Gesundheitsbehörden erstellen. Die Verantwortung der sicheren und datenschutzkonformen Übertragung trägt hierbei der Nutzer der App. Der Entwickler tritt von jeglicher Verantwortung bei der Weitergabe der personenbezogenen Daten zurück. Die Weitergabe der personenbezogenen Daten an Dritte darf nur mit dem ausdrücklichen Einverständnis der jeweiligen im PDF-Report enthaltenen Personen geschehen. Der Nutzer muss vor der Erstellung des Dokuments diesem Hinweis zustimmen.'),
                 ],
               ),
             ),
@@ -205,7 +214,7 @@ class AboutAppScreen extends StatelessWidget {
                         showLicensePage(
                             context: context,
                             applicationName: 'Cluster Tagebuch',
-                            applicationVersion: '1.0.1');
+                            applicationVersion: '1.1.0');
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

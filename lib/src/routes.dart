@@ -9,6 +9,7 @@ import 'ui/screens/edit_contactscreen.dart';
 import 'ui/screens/homescreen.dart';
 import 'ui/screens/notifications_screen.dart';
 import 'ui/screens/qrscreen.dart';
+import 'ui/screens/14days_report.dart';
 
 
 
@@ -22,4 +23,5 @@ final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   "/notification_screen": (BuildContext context) => NotificationScreen(),
   "/delete_screen": (BuildContext context) => DeleteScreen(),
   "/aboutapp_screen": (BuildContext context) => AboutAppScreen(),
+  "/14daysreport_screen": (BuildContext context) => DaysReportScreen(),
 };

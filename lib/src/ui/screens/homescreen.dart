@@ -54,7 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Container customDrawer() {
     return Container(
       padding: EdgeInsets.only(),
-      height: 200,
+      height: 265,
       width: 250,
       child: Drawer(
         child: Column(
@@ -70,6 +70,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 trailing: Icon(Icons.notifications, color: Colors.white),
                 title: Text(
                   'Benachrichtungen',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            Card(
+              color: Colors.teal,
+              child: ListTile(
+                onTap: () async {
+                  await Navigator.pushNamed(context, '/14daysreport_screen');
+                  Navigator.pop(context);
+                },
+                trailing: Icon(Icons.perm_contact_calendar, color: Colors.white),
+                title: Text(
+                  '14-Tage-Report',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
