@@ -2,7 +2,7 @@
 <img src="/assets/icon/Cluster_Tagebuch_Icon.png" width="150" height="150"/>
 
 ## Aus den Stores entfernt
-Leider musste ich beide Apps entfernen, da Covid-19 relevante Apps nicht von einem individual developer veröffentlich werden dürfen.
+Nach ca. 1400 Downloads im App und Play Store habe ich die App 'Cluster-Tagebuch' aus den jeweiligen Stores entfernt, da man als individual developer keine Covid-19 relevanten Apps veröffentlichen darf.
 
 ## Screenshots
 <img src="/docs/screenshots/screenshot_clusterlist_light.png" width="250" height="500"/> <img src="/docs/screenshots/screenshot_clusterlist_dark.png" width="250" height="500"/> <img src="/docs/screenshots/screen_contactlist.png" width="250" height="500"/> <img src="/docs/screenshots/screenshot_qrcode.png" width="250" height="500"/> <img src="/docs/screenshots/screenshot_editcluster.png" width="250" height="500"/> <img src="/docs/screenshots/screenshot_editcontact.png" width="250" height="500"/> <img src="/docs/screenshots/screenshot_notification.png" width="250" height="500"/>
