@@ -8,11 +8,11 @@ Privatperson
 Moritz Wettig
 52249 Eschweiler
 
-info@cluster-tagebuch.de
+moritz@wettig-it.de
 
 # Datenverarbeitung
 
-Die App "Cluster Tagebuch" speichert und verarbeitet die vom Nutzer hinzugefügten Daten ausschließlich lokal auf dem Smartphone des jeweiligen Nutzers. Alle personen- und ortsbezogenen Daten werden lokal in einer Datenbank auf dem Smartphone gespeichert. Zu keiner Zeit werden Daten an den Entwickler oder Dritte weitergegeben. Den Quellcode der App kann über folgendem Link eingesehen werden: "https://cluster-tagebuch.de".
+Die App "Cluster Tagebuch" speichert und verarbeitet die vom Nutzer hinzugefügten Daten ausschließlich lokal auf dem Smartphone des jeweiligen Nutzers. Alle personen- und ortsbezogenen Daten werden lokal in einer Datenbank auf dem Smartphone gespeichert. Zu keiner Zeit werden Daten an den Entwickler oder Dritte weitergegeben. Den Quellcode der App kann über folgendem Link eingesehen werden: "http://wettig-it.de".
 
 # Personenbezogene Daten
 
